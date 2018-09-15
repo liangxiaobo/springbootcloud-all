@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>${model.version}</modelVersion>
+
+    <groupId>com.spring.nahong.service</groupId>
+    <artifactId>service-order</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>service-order</name>
+    <description>Demo project for Spring Boot</description>
+
+    <parent>
+        <groupId>com.spring.nahong.service.common.dependency</groupId>
+        <artifactId>service-common-dependencys</artifactId>
+        <version>${all.version}</version>
+        <relativePath>../service-common-dependencys</relativePath>
+    </parent>
+
+
+    <dependencies>
+
+    </dependencies>
+
+</project>
