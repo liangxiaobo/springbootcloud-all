@@ -5,7 +5,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: 192.168.0.167
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
