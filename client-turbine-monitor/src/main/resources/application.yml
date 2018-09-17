@@ -1,10 +1,31 @@
 spring:
   application:
     name: client-turbine-monitor
+#  security:
+#    user:
+#      name: "client"
+#      password: "client"
+management:
+  context-path: /
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  file: ~/var/log/client-turbine-monitor.log
+
 server:
   port: 8767
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+#    metadata-map:
+#      user.name:  ${spring.security.user.name}
+#      user.password:  ${spring.security.user.password}
   client:
+    registryFetchIntervalSeconds: 5
     service-url:
       serviceZone: http://localhost:8761/eureka/
 
@@ -15,8 +36,7 @@ turbine:
   combine-host-port: true # 表示同一主机上的服务通过host和port的组合来进行区分，默认情况下是使用host来区分，这样会使本地调试有问题
   instanceUrlSuffix: hystrix.stream
 
-management:
-  context-path: /
+
 
 # 这里解决 /actuator/hystrix.stream 访问不了问题
 # http://blog.didispace.com/spring-cloud-tips-4/

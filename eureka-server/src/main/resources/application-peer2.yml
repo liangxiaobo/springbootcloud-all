@@ -2,6 +2,7 @@ spring:
   profiles: peer2
 server:
   port: 8762
+
 eureka:
   instance:
     hostname: localhost

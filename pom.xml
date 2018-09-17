@@ -12,15 +12,19 @@
     <artifactId>spring-boot-demo-all</artifactId>
     <version>${all.version}</version>
 
+    <!-- 模块 -->
     <modules>
         <module>eureka-server</module>
         <module>service-common-dependencys</module>
+        <module>client-common-dependencys</module>
         <module>service-user</module>
         <module>service-order</module>
         <module>client-feign</module>
         <module>client-order-ribbon</module>
         <module>client-turbine-monitor</module>
         <module>client-gateway-zuul</module>
+        <module>swagger-doc</module>
+        <module>spring-boot-admin-server</module>
     </modules>
 
     <properties>
@@ -28,9 +32,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <spring-boot-admin.version>2.0.2</spring-boot-admin.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
 
         <model.version>4.0.0</model.version>
+        <swagger.version>2.6.1</swagger.version>
     </properties>
 
     <parent>
@@ -79,7 +85,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- 生成在线api文档依赖 swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
 
