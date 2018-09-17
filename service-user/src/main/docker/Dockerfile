@@ -1,6 +1,6 @@
 FROM java
 VOLUME /tmp
-ADD eureka-server-0.0.1-SNAPSHOT.jar app.jar
-#RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-EXPOSE 8761
+ADD service-user-0.0.1-SNAPSHOT.jar app2.jar
+#RUN bash -c 'touch /app2.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app2.jar"]
+EXPOSE 8763

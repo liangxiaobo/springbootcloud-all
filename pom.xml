@@ -36,6 +36,8 @@
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
 
         <swagger.version>2.6.1</swagger.version>
+        <docker.plugin.version>1.1.1</docker.plugin.version>
+        <docker.image.prefix>liangwang</docker.image.prefix>
     </properties>
 
     <parent>
