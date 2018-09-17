@@ -12,7 +12,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/client-order-ribbon.log
+  file: var/log/client-order-ribbon.log
 server:
   port: 8766
 eureka:

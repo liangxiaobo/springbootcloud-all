@@ -11,7 +11,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/client-gateway-zuul.log
+  file: var/log/client-gateway-zuul.log
 
 server:
   port: 8771

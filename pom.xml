@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>${model.version}</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <description>SpringBoot 多模块示例</description>
     <name>spring-boot-demo-all</name>
@@ -35,7 +35,6 @@
         <spring-boot-admin.version>2.0.2</spring-boot-admin.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
 
-        <model.version>4.0.0</model.version>
         <swagger.version>2.6.1</swagger.version>
     </properties>
 

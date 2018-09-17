@@ -15,7 +15,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/swagger-doc.log
+  file: var/log/swagger-doc.log
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

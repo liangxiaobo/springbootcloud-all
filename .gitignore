@@ -14,4 +14,5 @@ hs_err_pid*
 .idea
 .DS_Store
 *.iml
-
+var/
+*.log

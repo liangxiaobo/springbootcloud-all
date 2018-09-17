@@ -12,7 +12,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/service-order.log
+  file: var/log/service-order.log
 server:
   port: 8764
 eureka:

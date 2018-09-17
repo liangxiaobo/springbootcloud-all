@@ -12,7 +12,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/service-user.log
+  file: var/log/service-user.log
 server:
   port: 8763
 eureka:

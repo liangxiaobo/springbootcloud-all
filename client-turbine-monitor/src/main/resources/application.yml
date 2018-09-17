@@ -12,7 +12,7 @@ management:
       exposure:
         include: "*"
 logging:
-  file: ~/var/log/client-turbine-monitor.log
+  file: var/log/client-turbine-monitor.log
 
 server:
   port: 8767
