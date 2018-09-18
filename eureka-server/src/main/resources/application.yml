@@ -1,8 +1,8 @@
 # 注册中心以集群形式配置
-# 默认启动配置是application-peer1.yml
+# 默认启动配置是application-dev-peer1.yml
 
 spring:
   profiles:
-    active: peer1
+    active: dev-peer1
   application:
     name: eureka-server

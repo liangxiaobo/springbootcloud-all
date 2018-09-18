@@ -1,13 +1,15 @@
 spring:
-  profiles: peer2
+  profiles: test-peer2
 server:
   port: 8762
 
 eureka:
   instance:
-    hostname: 192.168.0.167
+    hostname: 192.168.31.86
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
     register-with-eureka: false
     fetch-registry: false
+#  server:
+#    enable-self-preservation: false

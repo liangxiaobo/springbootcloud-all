@@ -1,0 +1,116 @@
+# docker-compose.yml 一次性启动多个服务容器
+# 编排可以将服务端和消息端分开编写
+# 按文件名启动：docker-compose -f [docker-compose.yml] up
+
+version: "2"
+
+services:
+  eureka-server-01:
+    image: liangwang/eureka-server
+    hostname: eureka-server
+    restart: always
+    ports:
+    - "8761:8761"
+    environment:
+    - "spring.profiles.active=test-peer1"
+
+  # eureka-server-01 docker 启动命令：
+  # docker run --name eureka-server-01 -p 8761:8761 -t liangwang/eureka-server --spring.profiles.active=test-peer1
+
+  eureka-server-02:
+      image: liangwang/eureka-server
+      hostname: eureka-server
+      restart: always
+      ports:
+      - "8762:8762"
+      environment:
+      - "spring.profiles.active=test-peer2"
+  # eureka-server-02 docker 启动命令：
+  # docker run --name eureka-server-02 -p 8762:8762 -t liangwang/eureka-server --spring.profiles.active=test-peer2
+
+
+  service-user:
+    image: liangwang/service-user
+    restart: always
+    ports:
+    - "8763:8763"
+    environment:
+    - "spring.profiles.active=test"
+    hostname: service-user
+#    external_links:
+#    - "eureka-server"
+
+  # service-user docker 启动命令：
+  # docker run --name service-user -p 8763:8763 -t liangwang/service-user --spring.profiles.active=test
+
+  service-order:
+    image: liangwang/service-order
+    ports:
+    - "8764:8764"
+    hostname: service-order
+    environment:
+    - "spring.profiles.active=test"
+
+  # service-order docker 启动命令：
+  # docker run --name service-order -p 8764:8764 -t liangwang/service-order --spring.profiles.active=test
+
+  client-feign:
+    image: liangwang/client-feign
+    ports:
+    - "8765:8765"
+    environment:
+    - "spring.profiles.active=test"
+
+  # client-feign docker 启动命令：
+  # docker run --name client-feign -p 8765:8765 -t liangwang/client-feign --spring.profiles.active=test
+
+  client-order-ribbon:
+      image: liangwang/client-order-ribbon
+      ports:
+      - "8766:8766"
+      environment:
+      - "spring.profiles.active=test"
+
+    # client-order-ribbon docker 启动命令：
+    # docker run --name client-order-ribbon -p 8766:8766 -t liangwang/client-order-ribbon --spring.profiles.active=test
+
+  client-gateway-zuul:
+    image: liangwang/client-gateway-zuul
+    ports:
+    - "8771:8771"
+    environment:
+    - "spring.profiles.active=test"
+
+  # client-gateway-zuul docker 启动命令：
+  # docker run --name client-gateway-zuul -p 8771:8771 -t liangwang/client-gateway-zuul --spring.profiles.active=test
+
+  client-turbine-monitor:
+    image: liangwang/client-turbine-monitor
+    ports:
+    - "8767:8767"
+    environment:
+    - "spring.profiles.active=test"
+
+  # client-turbine-monitor docker 启动命令：
+  # docker run --name client-turbine-monitor -p 8767:8767 -t liangwang/client-turbine-monitor --spring.profiles.active=test
+
+  spring-boot-admin-server:
+    image: liangwang/spring-boot-admin-server
+    ports:
+    - "8773:8773"
+    environment:
+    - "spring.profiles.active=test"
+
+  # spring-boot-admin-server docker 启动命令：
+  # docker run --name spring-boot-admin-server -p 8773:8773 -t liangwang/spring-boot-admin-server --spring.profiles.active=test
+
+  swagger-doc:
+    image: liangwang/swagger-doc
+    ports:
+    - "8772:8772"
+    environment:
+    - "spring.profiles.active=test"
+
+  # swagger-doc docker 启动命令：
+  # docker run --name swagger-doc -p 8772:8772 -t liangwang/swagger-doc --spring.profiles.active=test
+

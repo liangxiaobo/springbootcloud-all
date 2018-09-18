@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: client-feign
+#  security:
+#    user:
+#      name: "client"
+#      password: "client"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  file: var/log/client-feign.log
+
+server:
+  port: 8765
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+#    metadata-map:
+#      user.name:  ${spring.security.user.name}
+#      user.password:  ${spring.security.user.password}
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      serviceZone: http://192.168.31.86:8761/eureka/
+
+# 在Feign客户端开启Hystrix的支持
+# feign.hystrix.enabled=true
+feign:
+  hystrix:
+    enabled: true
+

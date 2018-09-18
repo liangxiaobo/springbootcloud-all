@@ -1,30 +1,3 @@
 spring:
-  application:
-    name: service-user
-#  security:
-#      user:
-#        name: "client"
-#        password: "client"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-logging:
-  file: var/log/service-user.log
-server:
-  port: 8763
-eureka:
-  instance:
-      leaseRenewalIntervalInSeconds: 10
-      health-check-url-path: /actuator/health
-      prefer-ip-address: true
-#      metadata-map:
-#        user.name:  ${spring.security.user.name}
-#        user.password:  ${spring.security.user.password}
-  client:
-    registryFetchIntervalSeconds: 5
-    service-url:
-      defaultZone: http://192.168.0.167:8761/eureka/
-
+  profiles:
+    active: dev
