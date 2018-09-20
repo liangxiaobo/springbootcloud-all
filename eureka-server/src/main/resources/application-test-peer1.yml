@@ -1,5 +1,5 @@
-spring:
-  profiles: test-peer1
+#spring:
+#  profiles: test-peer1
 
 server:
   port: 8761
@@ -8,7 +8,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-       defaultZone: http://172.16.10.177:8762/eureka/
+       defaultZone: http://172.16.10.177:8761/eureka/
     register-with-eureka: false
     fetch-registry: false
 
