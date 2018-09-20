@@ -27,7 +27,7 @@ eureka:
   client:
     registry-fetch-interval-seconds: 5
     service-url:
-      serviceZone: http://172.16.10.177:8761/eureka/
+      defaultZone: http://172.16.10.177:8761/eureka/
 
 # 在Feign客户端开启Hystrix的支持
 # feign.hystrix.enabled=true

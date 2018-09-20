@@ -27,7 +27,7 @@ eureka:
   client:
     registryFetchIntervalSeconds: 5
     service-url:
-      serviceZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 # turbine的配置参阅过 https://segmentfault.com/a/1190000011478978
 turbine:
