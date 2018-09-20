@@ -1,5 +1,5 @@
-#spring:
-#  profiles: test-peer1
+spring:
+  profiles: test-peer1
 
 server:
   port: 8761
