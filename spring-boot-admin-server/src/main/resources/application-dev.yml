@@ -2,7 +2,7 @@ server:
   port: 8773
 spring:
   application:
-    name: admin-server
+    name: spring-boot-admin-server
   security:
     user:
       name: "admin"

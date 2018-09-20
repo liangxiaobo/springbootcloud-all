@@ -5,11 +5,10 @@ server:
   port: 8761
 eureka:
   instance:
-    hostname: 192.168.31.86
     prefer-ip-address: true
   client:
     service-url:
-       defaultZone: http://${eureka.instance.hostname}:8762/eureka/
+       defaultZone: http://172.16.10.177:8762/eureka/
     register-with-eureka: false
     fetch-registry: false
 

@@ -2,7 +2,7 @@ server:
   port: 8773
 spring:
   application:
-    name: admin-server
+    name: spring-boot-admin-server
   security:
     user:
       name: "admin"
@@ -20,7 +20,8 @@ eureka:
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://192.168.31.86:8761}/eureka/
+      defaultZone: http://172.16.10.177:8761/eureka/
+#      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8761}/eureka/
 
 management:
   endpoints:
