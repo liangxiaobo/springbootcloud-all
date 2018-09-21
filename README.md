@@ -85,3 +85,65 @@ thread-pool:
     use-separate-thread-pools: true
   ribbon-isolation-strategy: thread # 每个路由使用独立的线程池
 ```
+
+## docker 方式的部署
+
+在pom.xml中添加docker打包插件
+```xml
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <imageTags>
+                        <!--<imageTag>${project.version}</imageTag>-->
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+> imageName 镜像的名称
+<br>dockerDirectory Dockerfile的目录
+<br> imageTag 就是对应version
+
+Dockerfile
+```bash
+FROM java
+VOLUME /tmp
+ADD eureka-server-0.0.1-SNAPSHOT.jar eureka-server.jar
+#RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}","/eureka-server.jar"]
+EXPOSE 8761 # 开放的端口
+```
+
+maven 打包 docker 命令 
+```bash
+mvn clean package docker:build
+```
+
+启动容器命令
+```bash
+docker run -d -e "SPRING_PROFILES_ACTIVE=test-peer1" --name eureka-server -p 8761:8761 -it liangwang/eureka-server
+```
+同一台机台可以使用容器名称来通信 比如 eureka-server容器使用link参数将其它链接到容器2
+
+```bash
+docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name service-user-01 --link=eureka-server -p 8763:8763 -it liangwang/service-user
+```
