@@ -4,5 +4,3 @@
 spring:
   profiles:
     active: dev-peer1
-  application:
-    name: eureka-server

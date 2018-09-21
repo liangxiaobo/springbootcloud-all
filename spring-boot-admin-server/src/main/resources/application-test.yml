@@ -21,7 +21,7 @@ eureka:
     registryFetchIntervalSeconds: 5
     serviceUrl:
 #      defaultZone: http://eureka-server:8761/eureka/
-      defaultZone: ${EUREKA_SERVICE_URL:http://172.16.10.177:8761}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8761}/eureka/
 
 management:
   endpoints:

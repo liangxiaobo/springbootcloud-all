@@ -1,14 +1,17 @@
 spring:
   profiles: test-peer2
+  application:
+    name: eureka-server-peer2
 server:
   port: 8762
 
 eureka:
   instance:
     prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
-      defaultZone: http://172.16.10.177:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
     register-with-eureka: false
     fetch-registry: false
 #  server:

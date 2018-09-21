@@ -26,7 +26,7 @@ eureka:
   client:
     registry-fetch-interval-seconds: 5
     service-url:
-      defaultZone: http://192.168.31.86:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
 zuul:
   routes:
     hiapi:

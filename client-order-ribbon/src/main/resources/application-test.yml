@@ -25,5 +25,5 @@ eureka:
 #      user.password:  ${spring.security.user.password}
   client:
     service-url:
-      defaultZone: http://192.168.31.86:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
     registry-fetch-interval-seconds: 5

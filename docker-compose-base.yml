@@ -1,0 +1,78 @@
+version: "2"
+
+services:
+  eureka-server:
+    image: liangwang/eureka-server
+    hostname: eureka-server
+    restart: always
+    ports:
+    - "8761:8761"
+    environment:
+    - "SPRING_PROFILES_ACTIVE=test-peer1"
+
+  # eureka-server-01 docker 启动命令：
+  # docker run -d -e "SPRING_PROFILES_ACTIVE=test-peer1" --name eureka-server-01 -p 8761:8761 -it liangwang/eureka-server
+
+#  eureka-server-02:
+#      image: liangwang/eureka-server
+#      hostname: eureka-server
+#      restart: always
+#      ports:
+#      - "8762:8762"
+#      environment:
+#      - "spring.profiles.active=test-peer2"
+  # eureka-server-02 docker 启动命令：
+  # docker run -d -e "SPRING_PROFILES_ACTIVE=test-peer2" --name eureka-server-02 -p 8762:8762 -it liangwang/eureka-server
+
+
+  service-user:
+    image: liangwang/service-user
+    restart: always
+    ports:
+    - "8763:8763"
+    environment:
+    - "SPRING_PROFILES_ACTIVE=test"
+    hostname: service-user
+    links:
+    - "eureka-server"
+
+  service-user-01:
+    image: liangwang/service-user
+    restart: always
+    ports:
+    - "8863:8663"
+    environment:
+    - "SPRING_PROFILES_ACTIVE=test"
+    - "server.port=8863"
+    hostname: service-user
+    links:
+    - "eureka-server"
+
+  # service-user docker 启动命令：
+  # docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name service-user -p 8763:8763 -it liangwang/service-user
+
+  service-order:
+    image: liangwang/service-order
+    ports:
+    - "8764:8764"
+    hostname: service-order
+    environment:
+    - "SPRING_PROFILES_ACTIVE=test"
+    links:
+    - "eureka-server"
+
+  # service-order docker 启动命令：
+  # docker run  -d -e "SPRING_PROFILES_ACTIVE=test" --name service-order -p 8764:8764 -it liangwang/service-order
+
+  spring-boot-admin-server:
+    image: liangwang/spring-boot-admin-server
+    hostname: spring-boot-admin-server
+    ports:
+    - "8773:8773"
+    environment:
+    - "SPRING_PROFILES_ACTIVE=test"
+    links:
+    - "eureka-server"
+
+  # spring-boot-admin-server docker 启动命令：
+  # docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name spring-boot-admin-server -p 8773:8773 -it liangwang/spring-boot-admin-server

@@ -2,7 +2,7 @@ FROM java
 VOLUME /tmp
 ADD eureka-server-0.0.1-SNAPSHOT.jar eureka-server.jar
 #RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/eureka-server.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}","/eureka-server.jar"]
 EXPOSE 8761
 
 
