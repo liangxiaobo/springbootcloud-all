@@ -1,6 +1,13 @@
 spring:
   application:
     name: service-user
+  zipkin:
+    base-url: http://localhost:9994
+  sleuth:
+    sampler:
+      probability: 1.0
+# sleuth.sampler.probability 是监控的百分比，默认的是0.1表示10%,这里给1.0表示全部监控
+# spring.zipkin.base-url：是zipkin-server的服务路径
 #  security:
 #      user:
 #        name: "client"

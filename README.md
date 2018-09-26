@@ -147,3 +147,38 @@ docker run -d -e "SPRING_PROFILES_ACTIVE=test-peer1" --name eureka-server -p 876
 ```bash
 docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name service-user-01 --link=eureka-server -p 8763:8763 -it liangwang/service-user
 ```
+
+## zipkin
+使用镜像运行zipkin项目
+
+```bash
+# 请先拉取镜像
+# docker pull openzipkin/zipkin
+
+# 运行容器
+# docker run -d -p 9994:9411 -e MYSQL_USER=root -e MYSQL_PASS=password -e MYSQL_HOST=192.168.0.8 -e STORAGE_TYPE=mysql openzipkin/zipkin
+docker run -d -p 9994:9411 --name zipkin openzipkin/zipkin
+```
+
+在需要追踪的项目中添加依赖
+```xml
+    <!-- 链路追踪 zipkin -->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
+    </dependency>
+```
+在application.yml中添加
+```xml
+spring:
+  zipkin:
+    base-url: http://localhost:9994
+  sleuth:
+    sampler:
+      probability: 1.0
+
+```
+sleuth.sampler.probability 是监控的百分比，默认的是0.1表示10%,这里给1.0表示全部监控
+spring.zipkin.base-url：是zipkin-server的服务路径
+
+访问 http://localhost:9994

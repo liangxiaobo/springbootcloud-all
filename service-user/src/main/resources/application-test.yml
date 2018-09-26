@@ -1,6 +1,11 @@
 spring:
   application:
     name: service-user
+  zipkin:
+    base-url: http://localhost:9994
+  sleuth:
+    sampler:
+      probability: 1.0
 #  security:
 #      user:
 #        name: "client"
