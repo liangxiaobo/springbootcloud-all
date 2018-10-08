@@ -53,8 +53,8 @@ zuul:
   # SEMAPHORE - 它在调用线程上执行，并发请求受信号量计数的限制(Zuul默认此策略)
   # THREAD - 它在一个单独的线程上执行，并发请求受到线程池中线程数的限制
   thread-pool:
-    use-separate-thread-pools: true
-  ribbon-isolation-strategy: thread # 每个路由使用独立的线程池
+    use-separate-thread-pools: true # 每个路由使用独立的线程池
+  ribbon-isolation-strategy: thread # 设置Hystrix隔离策略为线程池
 
 
 
