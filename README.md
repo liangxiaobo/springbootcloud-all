@@ -172,7 +172,7 @@ docker run -d -p 9994:9411 --name zipkin openzipkin/zipkin
 ```xml
 spring:
   zipkin:
-    base-url: http://localhost:9994
+    base-url: http://zipkin-service:9994
   sleuth:
     sampler:
       probability: 1.0
@@ -181,4 +181,4 @@ spring:
 sleuth.sampler.probability 是监控的百分比，默认的是0.1表示10%,这里给1.0表示全部监控
 spring.zipkin.base-url：是zipkin-server的服务路径
 
-访问 http://localhost:9994
+访问 http://zipkin-service:9994

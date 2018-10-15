@@ -2,7 +2,7 @@ spring:
   application:
     name: service-order
   zipkin:
-    base-url: http://localhost:9994
+    base-url: http://zipkin-service:9994
   sleuth:
     sampler:
       probability: 1.0
