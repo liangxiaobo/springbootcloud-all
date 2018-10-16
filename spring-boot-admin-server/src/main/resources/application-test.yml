@@ -17,12 +17,12 @@ eureka:
       metadata-map:
             user.name: ${spring.security.user.name}
             user.password: ${spring.security.user.password}
-      hostname: spring-boot-admin-server
+#      hostname: spring-boot-admin-server
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
-#      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8761}/eureka/
+#      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8761}/eureka/
 
 management:
   endpoints:
