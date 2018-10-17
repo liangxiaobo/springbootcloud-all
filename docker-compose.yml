@@ -2,8 +2,9 @@ version: '3'
 
 services:
   eureka-server:
-    images: 172.16.10.192:5000/eureka-server:latest
+    images: 172.16.10.192:5000/eureka-server:stable
     deploy:
+      mode: replicated
       replicas: 2
       restart_policy:
         condition: on-failure
@@ -12,7 +13,9 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - my-overlay-network
+      my-overlay-network:
+        aliases:
+          - eureka-server
 
   visualizer:
     image: dockersamples/visualizer:stable
@@ -25,6 +28,7 @@ services:
         constraints: [node.role == manager]
     networks:
       - my-overlay-network
+
 networks:
   my-overlay-network:
     driver: overlay
