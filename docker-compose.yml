@@ -2,7 +2,7 @@ version: '3'
 
 services:
   eureka-server:
-    images: 172.16.10.192:5000/eureka-server:stable
+    image: 172.16.10.192:5000/eureka-server:latest
     deploy:
       mode: replicated
       replicas: 2
