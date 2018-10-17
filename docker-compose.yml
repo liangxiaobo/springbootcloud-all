@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+
+  zipkin-service:
+    image: openzipkin/zipkin:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "9994:9411"
+    networks:
+      my-overlay-network:
+        aliases:
+          - zipkin-service
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
   eureka-server:
     image: 172.16.10.192:5000/eureka-server:latest
     deploy:
@@ -34,6 +51,103 @@ services:
           - service-user
     environment:
         - "SPRING_PROFILES_ACTIVE=test"
+
+  service-order:
+    image: 172.16.10.192:5000/service-order:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8764:8764"
+    networks:
+      my-overlay-network:
+        aliases:
+          - service-order
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+  client-order-ribbon:
+    image: 172.16.10.192:5000/client-order-ribbon:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8766:8766"
+    networks:
+      my-overlay-network:
+        aliases:
+          - client-order-ribbon
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+  client-feign:
+    image: 172.16.10.192:5000/client-feign:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8765:8765"
+    networks:
+      my-overlay-network:
+        aliases:
+          - client-feign
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+  client-gateway-zuul:
+    image: 172.16.10.192:5000/client-feign:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8771:8771"
+    networks:
+      my-overlay-network:
+        aliases:
+          - client-gateway-zuul
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+  client-turbine-monitor:
+    image: 172.16.10.192:5000/client-feign:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8767:8767"
+    networks:
+      my-overlay-network:
+        aliases:
+          - client-turbine-monitor
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+  spring-boot-admin-server:
+    image: 172.16.10.192:5000/client-feign:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8773:8773"
+    networks:
+      my-overlay-network:
+        aliases:
+          - spring-boot-admin-server
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
 
 
   visualizer:
