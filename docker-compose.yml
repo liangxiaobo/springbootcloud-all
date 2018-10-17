@@ -101,7 +101,7 @@ services:
         - "SPRING_PROFILES_ACTIVE=test"
 
   client-gateway-zuul:
-    image: 172.16.10.192:5000/client-feign:latest
+    image: 172.16.10.192:5000/client-gateway-zuul:latest
     deploy:
       mode: replicated
       replicas: 2
@@ -117,7 +117,7 @@ services:
         - "SPRING_PROFILES_ACTIVE=test"
 
   client-turbine-monitor:
-    image: 172.16.10.192:5000/client-feign:latest
+    image: 172.16.10.192:5000/client-turbine-monitor:latest
     deploy:
       mode: replicated
       replicas: 2
@@ -133,7 +133,7 @@ services:
         - "SPRING_PROFILES_ACTIVE=test"
 
   spring-boot-admin-server:
-    image: 172.16.10.192:5000/client-feign:latest
+    image: 172.16.10.192:5000/spring-boot-admin-server:latest
     deploy:
       mode: replicated
       replicas: 1
