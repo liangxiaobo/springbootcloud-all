@@ -1,0 +1,31 @@
+########
+# 这里是我手动执行的命令，用于手动创建service
+#######
+
+
+
+docker service create --name zipkin-service --replicas 2 --network my-overlay-network --publish 9994:9411  openzipkin/zipkin
+
+docker service create --with-registry-auth --name eureka-server --replicas 2 --network my-overlay-network --publish 8761:8761 -e "SPRING_PROFILES_ACTIVE=test-peer1" 172.16.10.192:5000/eureka-server
+
+
+docker service create --with-registry-auth --name service-user --replicas 2 --network my-overlay-network --publish 8763:8763 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/service-user
+
+
+docker service create --with-registry-auth --name service-order --replicas 2 --network my-overlay-network --publish 8764:8764 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/service-order
+
+
+
+docker service create --with-registry-auth --name spring-boot-admin-server --replicas 1 --network my-overlay-network --publish 8773:8773 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/spring-boot-admin-server
+
+
+docker service create --with-registry-auth --name client-order-ribbon --replicas 2 --network my-overlay-network --publish 8766:8766 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/client-order-ribbon
+
+
+docker service create --with-registry-auth --name client-feign --replicas 2 --network my-overlay-network --publish 8765:8765 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/client-feign
+
+
+docker service create --with-registry-auth --name client-gateway-zuul --replicas 2 --network my-overlay-network --publish 8771:8771 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/client-gateway-zuul
+
+
+docker service create --with-registry-auth --name client-turbine-monitor --replicas 2 --network my-overlay-network --publish 8767:8767 -e "SPRING_PROFILES_ACTIVE=test" 172.16.10.192:5000/client-turbine-monitor

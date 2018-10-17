@@ -1,77 +1,31 @@
-# docker-compose.yml 一次性启动多个服务容器
-# 编排可以将服务端和消息端分开编写
-# 按文件名启动：docker-compose -f [docker-compose.yml] up
-# docker-compose -f docker-compose-base.yml -f docker-compose.yml up
+version: '3'
 
-
-# -e "SPRING_PROFILES_ACTIVE=test"
-version: "2"
 services:
-  client-feign:
-    image: liangwang/client-feign
-    hostname: client-feign
+  eureka-server:
+    images: 172.16.10.192:5000/eureka-server
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+#      placement:
+#        constraints: [node.role == worker]
     ports:
-    - "8765:8765"
-    environment:
-    - "SPRING_PROFILES_ACTIVE=test"
-    links:
-    - "eureka-server"
-    - "service-user"
+      - "8761:8761"
+    networks:
+      - my-overlay-network
 
-  # client-feign docker 启动命令：
-  # docker run  -d -e "SPRING_PROFILES_ACTIVE=test" --name client-feign -p 8765:8765 -it liangwang/client-feign
-
-  client-order-ribbon:
-    image: liangwang/client-order-ribbon
-    hostname: client-order-ribbon
-    ports:
-    - "8766:8766"
-    environment:
-    - "SPRING_PROFILES_ACTIVE=test"
-    links:
-    - "eureka-server"
-    - "service-order"
-
-    # client-order-ribbon docker 启动命令：
-    # docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name client-order-ribbon -p 8766:8766 -it liangwang/client-order-ribbon
-
-  client-gateway-zuul:
-    image: liangwang/client-gateway-zuul
-    hostname: client-gateway-zuul
-    ports:
-    - "8771:8771"
-    environment:
-    - "SPRING_PROFILES_ACTIVE=test"
-    links:
-    - "eureka-server"
-
-    # client-gateway-zuul docker 启动命令：
-    # docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name client-gateway-zuul -p 8771:8771 -it liangwang/client-gateway-zuul
-
-  client-turbine-monitor:
-    image: liangwang/client-turbine-monitor
-    hostname: client-turbine-monitor
-    ports:
-    - "8767:8767"
-    environment:
-    - "SPRING_PROFILES_ACTIVE=test"
-    links:
-    - "eureka-server"
-
-  # client-turbine-monitor docker 启动命令：
-  # docker run -d -e "SPRING_PROFILES_ACTIVE=test" --name client-turbine-monitor -p 8767:8767 -it liangwang/client-turbine-monitor
-
-
-  swagger-doc:
-    image: liangwang/swagger-doc
-    hostname: swagger-doc
-    ports:
-    - "8772:8772"
-    environment:
-    - "SPRING_PROFILES_ACTIVE=test"
-    links:
-    - "eureka-server"
-
-  # swagger-doc docker 启动命令：
-  # docker run  -d -e "SPRING_PROFILES_ACTIVE=test" --name swagger-doc -p 8772:8772 -it liangwang/swagger-doc
+  visualizer:
+      image: dockersamples/visualizer:stable
+      ports:
+        - "8080:8080"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+      deploy:
+        placement:
+          constraints: [node.role == manager]
+      networks:
+        - my-overlay-network
+networks:
+  my-overlay-network:
+    driver: overlay
 
