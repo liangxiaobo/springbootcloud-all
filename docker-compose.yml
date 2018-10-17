@@ -2,7 +2,7 @@ version: '3'
 
 services:
   eureka-server:
-    images: 172.16.10.192:5000/eureka-server
+    images: 172.16.10.192:5000/eureka-server:latest
     deploy:
       replicas: 2
       restart_policy:
@@ -15,16 +15,16 @@ services:
       - my-overlay-network
 
   visualizer:
-      image: dockersamples/visualizer:stable
-      ports:
-        - "8080:8080"
-      volumes:
-        - "/var/run/docker.sock:/var/run/docker.sock"
-      deploy:
-        placement:
-          constraints: [node.role == manager]
-      networks:
-        - my-overlay-network
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - my-overlay-network
 networks:
   my-overlay-network:
     driver: overlay
