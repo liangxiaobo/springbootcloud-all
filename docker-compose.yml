@@ -19,6 +19,23 @@ services:
     environment:
         - "SPRING_PROFILES_ACTIVE=test-peer1"
 
+  service-user:
+    image: 172.16.10.192:5000/service-user:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8763:8763"
+    networks:
+      my-overlay-network:
+        aliases:
+          - service-user
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test"
+
+
   visualizer:
     image: dockersamples/visualizer:stable
     ports:
