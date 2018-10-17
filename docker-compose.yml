@@ -16,6 +16,8 @@ services:
       my-overlay-network:
         aliases:
           - eureka-server
+    environment:
+        - "SPRING_PROFILES_ACTIVE=test-peer1"
 
   visualizer:
     image: dockersamples/visualizer:stable
