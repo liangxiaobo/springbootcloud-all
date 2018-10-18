@@ -1,3 +1,6 @@
+# 执行命令 docker stack deploy -c docker-compose.yml [tack名称]
+# 如果镜像从私库上拉：docker stack deploy -c docker-compose.yml --with-registry-auth [tack名称]
+
 version: '3'
 
 services:
