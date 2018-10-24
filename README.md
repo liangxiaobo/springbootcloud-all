@@ -1,5 +1,12 @@
 # springbootcloud-all
 
+本项目有三个主要的分支: master-docker、master-zipkin、 master-swarm
+在简书上都有详细说明 https://www.jianshu.com/u/7ef99661ebb0
+简书上对本项目的三个文章: 
+* [spring cloud 快速学习教程](https://www.jianshu.com/p/2e3953fce6c0)
+* [Docker Swarm集成搭建](https://www.jianshu.com/p/cd01033a21e6)
+* [Docker Swarm 搭建SpringCloud集群](https://www.jianshu.com/p/9426ad159b18)
+
 项目结构:
  ``` bash
  ├── springbootdemoall
