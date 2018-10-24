@@ -3,6 +3,7 @@
 
 ## 1. swarm环境
 基于[Docker Swarm集成搭建](https://www.jianshu.com/p/cd01033a21e6)的基础上，我的三台测试机
+
 | IP  |角色 |
 | ------ | ------ |
 |172.16.10.85| manager|
