@@ -1,3 +1,9 @@
+本项目有三个主要的分支: master-docker、master-zipkin、 master-swarm 在简书上都有详细说明 https://www.jianshu.com/u/7ef99661ebb0 简书上对本项目的三个文章:
+
+spring cloud 快速学习教程
+Docker Swarm集成搭建
+Docker Swarm 搭建SpringCloud集群
+
 想对看过的spring cloud 各个项目进行一个简单的搭建，并使用docker部署，目前包含的项目有Eureka、Ribbon、Feign、Hystrix、Hystrix Dashboard、Turbine聚合监控、Zuul、SpringBootAdmin等Spring Config 、OAuth2未集成进来，但是在我的主页里有单独的实例，后续会慢慢都集成进来。
 
 github地址：https://github.com/liangxiaobo/springbootcloud-all 分支 master-docker
