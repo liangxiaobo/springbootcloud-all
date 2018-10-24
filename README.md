@@ -220,6 +220,7 @@ turbine:
   combine-host-port: true # 表示同一主机上的服务通过host和port的组合来进行区分，默认情况下是使用host来区分，这样会使本地调试有问题
 ```
 > 这里会有一个问题，turbine会去访问其它项目的/hystrix.stream路径，默认情况下turbine访问的是/actuator/hystrix.stream，这个路径访问不通，因为其它项目注册的路由地址是/hystrix.stream，所以要纠正turbine项目访问的默认地址，在配置文件中添加turbine.instanceUrlSuffix=hystrix.stream，management.context-path=/
+
 配置文件：
 ```xml
 management:
@@ -230,6 +231,7 @@ turbine:
   combine-host-port: true # 表示同一主机上的服务通过host和port的组合来进行区分，默认情况下是使用host来区分，这样会使本地调试有问题
   instanceUrlSuffix: hystrix.stream
 ```
+
 测试一下turbine,必须启动多个项目 eureka-server、service-user、service-order、client-feign、client-order-ribbon、client-gateway-zuul、client-turbine-monitor
 访问turbine之前要先访问一下其它项目，不然不会有数据显示turbine会处于loading中
 访问 http://localhost:8767/turbine.stream  会有json格式的数据流
