@@ -7,8 +7,6 @@
 
 想对看过的spring cloud 各个项目进行一个简单的搭建，并使用docker部署，目前包含的项目有Eureka、Ribbon、Feign、Hystrix、Hystrix Dashboard、Turbine聚合监控、Zuul、SpringBootAdmin等Spring Config 、OAuth2未集成进来，但是在我的主页里有单独的实例，后续会慢慢都集成进来。
 
-github地址：https://github.com/liangxiaobo/springbootcloud-all 分支 master-docker
-
 
 项目模块：
 ```bash
