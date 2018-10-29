@@ -691,4 +691,3 @@ spring.zipkin.base-url：是zipkin-server的服务路径
 
 ![e8.png](https://upload-images.jianshu.io/upload_images/2151905-cd7ba2c004812605.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/760)
 
-后续我会集成OAuth2.0 JWT和Config配置中心
