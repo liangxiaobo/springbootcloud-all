@@ -18,8 +18,8 @@ services:
       my-overlay-network:
         aliases:
           - zipkin-service
-    environment:
-        - "SPRING_PROFILES_ACTIVE=test"
+#    environment:
+#        - "SPRING_PROFILES_ACTIVE=test"
 
   eureka-server:
     image: 172.16.10.192:5000/eureka-server:latest
