@@ -4,7 +4,7 @@
 
 
 
-docker service create --name zipkin-service --replicas 2 --network my-overlay-network --publish 9994:9411  openzipkin/zipkin
+docker service create --name zipkin-service --replicas 2 --network my-overlay-network --publish 9411:9411  openzipkin/zipkin
 
 docker service create --with-registry-auth --name eureka-server --replicas 2 --network my-overlay-network --publish 8761:8761 -e "SPRING_PROFILES_ACTIVE=test-peer1" 172.16.10.192:5000/eureka-server
 
