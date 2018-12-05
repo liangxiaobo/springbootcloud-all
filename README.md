@@ -657,8 +657,8 @@ docker pull openzipkin/zipkin
 
 ```bash
 # 运行容器
-# docker run -d -p 9994:9411 -e MYSQL_USER=root -e MYSQL_PASS=password -e MYSQL_HOST=192.168.0.8 -e STORAGE_TYPE=mysql openzipkin/zipkin
-docker run -d -p 9994:9411 --name zipkin openzipkin/zipkin
+# docker run -d -p 9411:9411 -e MYSQL_USER=root -e MYSQL_PASS=password -e MYSQL_HOST=192.168.0.8 -e STORAGE_TYPE=mysql openzipkin/zipkin
+docker run -d -p 9411:9411 --name zipkin openzipkin/zipkin
 ```
 
 在需要追踪的项目中添加依赖
@@ -673,7 +673,7 @@ docker run -d -p 9994:9411 --name zipkin openzipkin/zipkin
 ```xml
 spring:
   zipkin:
-    base-url: http://localhost:9994 # 如果zipkin服务在其它服务器，localhost应为对应的IP
+    base-url: http://localhost:9411 # 如果zipkin服务在其它服务器，localhost应为对应的IP
   sleuth:
     sampler:
       probability: 1.0
@@ -682,7 +682,7 @@ spring:
 sleuth.sampler.probability 是监控的百分比，默认的是0.1表示10%,这里给1.0表示全部监控
 spring.zipkin.base-url：是zipkin-server的服务路径
 
-访问 http://localhost:9994
+访问 http://localhost:9411
 
 ![e7.png](https://upload-images.jianshu.io/upload_images/2151905-b44a5dbb51fa797a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/760)
 

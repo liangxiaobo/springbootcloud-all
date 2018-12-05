@@ -13,7 +13,7 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "9994:9411"
+      - "9411:9411"
     networks:
       my-overlay-network:
         aliases:

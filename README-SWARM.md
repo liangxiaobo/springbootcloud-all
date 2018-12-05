@@ -99,7 +99,7 @@ https://docs.docker.com/engine/reference/commandline/service_create/#create-a-se
 这是要创建服务的命令：
 ```--network my-overlay-network``` 是自定义网络
 ```bash
-docker service create --name zipkin-service --replicas 2 --network my-overlay-network --publish 9994:9411  openzipkin/zipkin
+docker service create --name zipkin-service --replicas 2 --network my-overlay-network --publish 9411:9411  openzipkin/zipkin
 
 docker service create --with-registry-auth --name eureka-server --replicas 2 --network my-overlay-network --publish 8761:8761 -e "SPRING_PROFILES_ACTIVE=test-peer1" 172.16.10.192:5000/eureka-server
 
@@ -130,7 +130,7 @@ zqlpb42ipqhu        service-order              replicated          2/2          
 kh89t4hpgr70        service-user               replicated          2/2                 172.16.10.192:5000/service-user:latest               *:8763->8763/tcp
 0rslh6ebjm0x        service-user3              replicated          3/3                 172.16.10.192:5000/service-user:latest               *:8863->8763/tcp
 25ji5lwx66cq        spring-boot-admin-server   replicated          1/1                 172.16.10.192:5000/spring-boot-admin-server:latest   *:8773->8773/tcp
-iptkiejwkuyu        zipkin-service             replicated          2/2                 openzipkin/zipkin:latest                             *:9994->9411/tcp
+iptkiejwkuyu        zipkin-service             replicated          2/2                 openzipkin/zipkin:latest                             *:9411->9411/tcp
 ```
 访问 [http://172.16.10.85:8761/](http://172.16.10.85:8761/)
 ![WX20181017-142759@2x.png](https://upload-images.jianshu.io/upload_images/2151905-4d3213a5a5b197c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/760)
@@ -153,7 +153,7 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "9994:9411"
+      - "9411:9411"
     networks:
       my-overlay-network:
         aliases:
@@ -349,7 +349,7 @@ u38tk0j0ez4l        app_service-order              replicated          2/2      
 sv6h294y9r60        app_service-user               replicated          2/2                 172.16.10.192:5000/service-user:latest               *:8763->8763/tcp
 ybu18hzo4ra6        app_spring-boot-admin-server   replicated          1/1                 172.16.10.192:5000/spring-boot-admin-server:latest   *:8773->8773/tcp
 2m48cqlcip6v        app_visualizer                 replicated          1/1                 dockersamples/visualizer:stable                      *:8080->8080/tcp
-692kwr04oa5u        app_zipkin-service             replicated          2/2                 openzipkin/zipkin:latest                             *:9994->9411/tcp
+692kwr04oa5u        app_zipkin-service             replicated          2/2                 openzipkin/zipkin:latest                             *:9411->9411/tcp
 ```
 ![WX20181018-093328@2x.png](https://upload-images.jianshu.io/upload_images/2151905-cca5a48ab83490e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/760)
 
